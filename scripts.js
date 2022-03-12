@@ -1,5 +1,6 @@
 const show_books = document.querySelector("#showBooks")
 const container = document.querySelector('.container')
+const addBookBtn = document.querySelector('#addBookBtn')
 
 let myLibrary = [
 {
@@ -20,6 +21,11 @@ function Book (title, author, pages, available) {
     this.author = author
     this.pages = pages
     this.available = available
+}
+
+// under construction
+function displayForm() {
+    
 }
 
 function addBookToLibrary (title, author, pages, available) {
