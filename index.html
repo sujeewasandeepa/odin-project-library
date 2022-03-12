@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="scripts.js"></script>
+        <script src="scripts.js" defer></script>
+        <meta charset="utf-8" />
+        <style>
+            body {
+                width: 60%;
+                margin: auto;
+            }
+            .book {
+                border: 2px solid black;
+                margin-bottom: 20px;
+                padding-left: 100px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+            .book-attribute {
+                font-family: monospace;
+            }
+            #addBookBtn {
+                margin: 20px;
+            }
+        </style>
     </head>
     <body>
         <h1>Library!</h1>
-        <div></div>
+        <button id="addBookBtn">Add Book</button>
+        <div class="container">
+            
+        </div>
     </body>
 </html>

@@ -1,4 +1,5 @@
 const show_books = document.querySelector("#showBooks")
+const container = document.querySelector('.container')
 
 let myLibrary = [
 {
@@ -28,12 +29,28 @@ function addBookToLibrary (title, author, pages, available) {
 
 function viewLibrary () {
     myLibrary.forEach(book => {
-        console.log(book);
-
-        show_books.innerText = book.title
+        console.log(book)
+        displayAttributeValues(book)
     });
 }
 
-addBookToLibrary ("Hutta", "Pakaya", 100, false)
+
+// this function will create separate divs for each attribute
+// of the object and display the values of each attribute
+function displayAttributeValues (book) {
+    let book_len = Object.keys(book).length;
+    let new_element = document.createElement("div")
+    new_element.className = "book"
+    for (i in book) {
+        let new_inner_element = document.createElement("div")
+        new_inner_element.className = "book-attribute"
+        new_inner_element.innerText = i + " : "
+        new_inner_element.innerText += book[i]
+        new_element.appendChild(new_inner_element)
+    }
+    container.appendChild(new_element)
+
+}
+addBookToLibrary ("Monkey World", "King Monkey", 100, false)
 
 viewLibrary()
