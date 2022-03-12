@@ -1,44 +1,56 @@
-const header = document.querySelector('.header')
+const show_books = document.querySelector("#showBooks")
+const container = document.querySelector('.container')
 
-// all the books and info about books are stored here
-let myLibrary = [{title : "The Hobbit", author : "JRR Tolkien", pages : 400, availability : true},
-{title : "Banana Hope", author : "Monkey Ass", pages : 100, availability : false}]
+let myLibrary = [
+{
+    title : "Harry Potter",
+    author : "JK Rowling",
+    pages : 200,
+    available : true
+},
+{
+    title : "The Hobbit",
+    author : "Tokien",
+    pages : 400,
+    available : true
+}]
 
-// consutructor for Book objects
-function Book (title, author, pages, availability) {
+function Book (title, author, pages, available) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.availability = availability
+    this.available = available
 }
 
-// this function will print some information about the particullar
-// book
-Book.prototype.info = function () {
-    let info = this.title + " is written by " + this.author +
-    " and there are " + this.pages + " pages in this fucking book."
-    return info
+function addBookToLibrary (title, author, pages, available) {
+    book = new Book(title, author, pages, available)
+    myLibrary.push(book);
 }
 
-// this function will create a Book object and then add
-// it to the myLibrary array
-function addToLibrary(title, author, pages, availability) {
-    book = new Book(title, author, pages, availability);
-    myLibrary.push(book)
-}
-
-// this function iterates through a give list and display each 
-// element in the list
-function displayBook (library) {
-    library.forEach(book => {
+function viewLibrary () {
+    myLibrary.forEach(book => {
         console.log(book)
+        displayAttributeValues(book)
     });
 }
 
-// testing starts here
-let book1 = new Book("The Hobbit", "Cunt", 200, true)
-let text = book1.info()
-displayBook(myLibrary)
-console.log("*---------*------------*---------*")
-addToLibrary("One Piece", "Oda", 10000, true)
-displayBook(myLibrary)
+
+// this function will create separate divs for each attribute
+// of the object and display the values of each attribute
+function displayAttributeValues (book) {
+    let book_len = Object.keys(book).length;
+    let new_element = document.createElement("div")
+    new_element.className = "book"
+    for (i in book) {
+        let new_inner_element = document.createElement("div")
+        new_inner_element.className = "book-attribute"
+        new_inner_element.innerText = i + " : "
+        new_inner_element.innerText += book[i]
+        new_element.appendChild(new_inner_element)
+    }
+    container.appendChild(new_element)
+
+}
+addBookToLibrary ("Monkey World", "King Monkey", 100, false)
+
+viewLibrary()
