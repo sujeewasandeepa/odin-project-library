@@ -1,6 +1,10 @@
 const show_books = document.querySelector("#showBooks")
 const container = document.querySelector('.container')
 const addBookBtn = document.querySelector('#addBookBtn')
+const bookForm = document.querySelector('form')
+
+// hide form
+bookForm.style.display = 'none'
 
 let myLibrary = [
 {
@@ -16,6 +20,11 @@ let myLibrary = [
     available : true
 }]
 
+// Event listeners
+// addBookBtn.addEventListener('click', displayForm(bookForm))
+addBookBtn.addEventListener('click', showOrHide)
+
+// functions
 function Book (title, author, pages, available) {
     this.title = title
     this.author = author
@@ -23,9 +32,20 @@ function Book (title, author, pages, available) {
     this.available = available
 }
 
-// under construction
-function displayForm() {
-    
+function showOrHide () {
+    if (bookForm.style.display == 'none') {
+        displayForm ()
+    } else {
+        hideForm ()
+    }
+}
+
+function displayForm () {
+    bookForm.style.display = 'block'
+}
+
+function hideForm () {
+    bookForm.style.display = 'none'
 }
 
 function addBookToLibrary (title, author, pages, available) {

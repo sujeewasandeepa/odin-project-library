@@ -21,15 +21,35 @@
             #addBookBtn {
                 margin: 20px;
             }
+            .form-class {
+                display: block;
+            }
         </style>
     </head>
     <body>
         <h1>Library!</h1>
         <button id="addBookBtn">Add Book</button>
         <form>
-            <label for = "title">Title: </label>
-            <input type = "text" name = "title" />
-            
+            <div class = "form-items"> 
+                <label for = "title">Title: </label>
+                <input type = "text" name = "title" />
+            </div>
+            <div class = "form-items"> 
+                <label for = "author">Author: </label>
+                <input type = "text" name = "author" />
+            </div>
+            <div class = "form-items"> 
+                <label for = "pages">Pages: </label>
+                <input type = "number" name = "pages" />
+            </div>
+            <div class = "form-items">
+            <label>Available: </label>
+            </br>
+            <label for = "available">Yes </label>
+            <input type = "radio" name = "available" value = "true" />
+            <label for = "not-available">No </label>
+            <input type = "radio" name = "not-available" value = "false" />
+            </div>
         </form>
         <div class="container">     
         </div>
