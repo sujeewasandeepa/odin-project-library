@@ -1,10 +1,12 @@
 const show_books = document.querySelector("#showBooks")
 const container = document.querySelector('.container')
 const addBookBtn = document.querySelector('#addBookBtn')
+const removeBtn = document.querySelectorAll('.removeBtn')
 const bookForm = document.querySelector('form')
 
 // hide form
 bookForm.style.display = 'none'
+
 
 let myLibrary = [
 {
@@ -24,7 +26,7 @@ let myLibrary = [
 // addBookBtn.addEventListener('click', displayForm(bookForm))
 addBookBtn.addEventListener('click', showOrHide)
 
-// functions
+// constructor
 function Book (title, author, pages, available) {
     this.title = title
     this.author = author
@@ -32,6 +34,7 @@ function Book (title, author, pages, available) {
     this.available = available
 }
 
+// functions
 function showOrHide () {
     if (bookForm.style.display == 'none') {
         displayForm ()
@@ -48,25 +51,29 @@ function hideForm () {
     bookForm.style.display = 'none'
 }
 
+function removeItem (index) {
+    myLibrary.splice(index, 1)
+}
+
 function addBookToLibrary (title, author, pages, available) {
     book = new Book(title, author, pages, available)
     myLibrary.push(book);
 }
 
 function viewLibrary () {
-    myLibrary.forEach(book => {
+    myLibrary.forEach((book, index) => {
         console.log(book)
-        displayAttributeValues(book)
+        displayAttributeValues(book, index)
     });
 }
 
-
 // this function will create separate divs for each attribute
 // of the object and display the values of each attribute
-function displayAttributeValues (book) {
-    let book_len = Object.keys(book).length;
+function displayAttributeValues (book, index) {
     let new_element = document.createElement("div")
     new_element.className = "book"
+    new_element.index = index
+
     for (i in book) {
         let new_inner_element = document.createElement("div")
         new_inner_element.className = "book-attribute"
@@ -75,8 +82,9 @@ function displayAttributeValues (book) {
         new_element.appendChild(new_inner_element)
     }
     container.appendChild(new_element)
-
 }
-addBookToLibrary ("Monkey World", "King Monkey", 100, false)
 
+// testing
+addBookToLibrary ("Monkey World", "King Monkey", 100, false)
 viewLibrary()
+
